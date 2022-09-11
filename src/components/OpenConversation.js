@@ -12,7 +12,7 @@ export default function OpenConversation() {
     const {id, username} = useUser()
     const socket = useSocket()
 
-    const addMessageToConversation = useCallback(({recipient, msg, issueId})=>{
+    const addMessageToConversation = useCallback(({recipient, msg})=>{
       let madeChange = false
       convs.map(async prev=>{
         
@@ -38,16 +38,7 @@ export default function OpenConversation() {
           const convsCollectionRef = collection(db, "convs")
           await addDoc(convsCollectionRef, { userId: id,username: username, contactId:recipient[0].id ,
           contactName: recipient[0].name, contactPhoto: recipient[0].photo, messages: [{msg: msg,
-          fromName: recipient[0].name, fromId: recipient[0].id}], issueId: issueId});
-
-          const issue = doc(db, "issues", issueId)
-          let involved = []
-          issue.involved.map(p=>{
-            involved.push(p)
-          })
-          involved.push(recipient[0].photo)
-          const newFields = { involved: involved };
-          await updateDoc(issue, newFields);
+          fromName: recipient[0].name, fromId: recipient[0].id}]});
         }
 
         createConversation(recipient, msg)
@@ -77,8 +68,7 @@ export default function OpenConversation() {
         await updateDoc(conv, newFields);
         socket.emit('send-message', 
         {recipient: {id: selectedConversation.contactId} 
-        , msg: messageRef.current.value, senderName: username, senderPhoto: selectedConversation.userPhoto
-        ,issueId: selectedConversation.issueId})
+        , msg: messageRef.current.value, senderName: username, senderPhoto: selectedConversation.userPhoto})
         messageRef.current.value = ''
     }
 

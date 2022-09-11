@@ -21,9 +21,9 @@ export default function ViewIssues({issues, state}) {
     function closeModal(){
     setShow(false)
     }
-    const createConversation = async(cid, cname, cphoto, issueId)=>{
+    const createConversation = async(cid, cname, cphoto)=>{
         await addDoc(convsCollectionRef, { userId: id,username: username,userPhoto: photo,
-        contactId:cid,contactName: cname, contactPhoto: cphoto, messages: [], issue: issueId});
+        contactId:cid,contactName: cname, contactPhoto: cphoto, messages: []});
         alert('Conversation added successfully!')
     }
   return (
@@ -52,12 +52,6 @@ export default function ViewIssues({issues, state}) {
       <p>{issue !== null && issue.desc}</p>
       <span style={{fontWeight:"bold"}}>Contributors:</span>
       <div>
-      {/* { 
-        i.involved !== undefined &&
-        i.involved.map(p=>{
-          return <img style={{width:"40px", height:"40px", borderRadius:"50%"}} src={p}/>
-        })
-      } */}
       <img style={{width:"40px", height:"40px", borderRadius:"50%"}} src={issue !== null && issue.userPhoto}/>
       </div>
       <span style={{fontWeight:"bold"}}>Associated Tags:</span>
@@ -70,7 +64,7 @@ export default function ViewIssues({issues, state}) {
       </div>
       <span style={{fontWeight:"bold"}}>Help Us:</span>
       <p>{issue !== null && issue.prompt}</p>
-      <Button variant='dark' onClick={()=>createConversation(issue.userId, issue.username, issue.userPhoto, issue.docId)}>Start conversation with {issue !== null && issue.username}</Button>
+      <Button variant='dark' onClick={()=>createConversation(issue.userId, issue.username, issue.userPhoto)}>Start conversation with {issue !== null && issue.username}</Button>
       </Modal.Body>
       </Modal>
     </>}

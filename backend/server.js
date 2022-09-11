@@ -8,11 +8,11 @@ io.on('connection', socket=>{
     const id = socket.handshake.query.id
     socket.join(id)
 
-    socket.on('send-message', ({recipient, msg, senderName, senderPhoto, issueId}) =>{
+    socket.on('send-message', ({recipient, msg, senderName, senderPhoto}) =>{
             const newRecipient = []
             newRecipient.push({name: senderName, id: id, photo: senderPhoto})
             socket.to(recipient.id).emit('receive-message', {
-                recipient: newRecipient, msg, issueId
+                recipient: newRecipient, msg
             })
         })
 })

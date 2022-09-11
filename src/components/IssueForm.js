@@ -23,7 +23,7 @@ export default function IssueForm() {
         e.preventDefault();
 
         await addDoc(issuesCollectionRef, { userId: id,username: username,userPhoto: photo,
-             title: title, desc: desc, tags: tags, prompt: prompt,involved: [photo],
+             title: title, desc: desc, tags: tags, prompt: prompt,
               isOpen: true});
         let tagArray = tags.split(',')
         tagArray.map(async tag=>{
