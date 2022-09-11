@@ -20,3 +20,29 @@ a.nav-link.active, a.nav-link.active:hover{
 a.nav-link:hover{
   color:lightblue;
 }
+
+.nav-pills > .nav-item > a.active{
+  background-color: lightblue;
+}
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: lightblue;
+  border-radius: 2rem;
+}
+
+form > button.btn.btn-light{
+  background-color: lightblue;
+  color:white;
+}
+button.list-group-item.active{
+background-color: lightblue;
+}
+
+button.border.rounded-0.btn.btn-light{
+  background-color: lightblue;
+  color: white;
+}
