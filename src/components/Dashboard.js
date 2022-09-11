@@ -1,34 +1,98 @@
-import {Nav, Button, Tab, Card, Modal, Badge} from 'react-bootstrap';
+import {Nav, Button, Tab, Form, InputGroup, Dropdown} from 'react-bootstrap';
 import { SignOut} from "../firebase";
 import { useUser } from "../contexts/UserProvider";
 import Profile from './Profile';
 import { useIssue } from '../contexts/IssuesProvider';
-import { useState } from 'react';
+import ViewIssues from './ViewIssues';
+import { useEffect, useState, useRef } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import {
-  collection,
-  addDoc
-} from "firebase/firestore";
 
 export default function Dashboard() {
-  const {photo, id, username} = useUser()
-  const [show, setShow] = useState(false)
+  const {photo} = useUser()
   const issues = useIssue()
-  const [issue, setIssue] = useState(null)
-  const convsCollectionRef = collection(db, "convs");
+  const tagsCollectionRef = collection(db, "tags")
+  const [tags, setTags] = useState('')
+  const [shownIssues, setShownIssues]= useState(issues)
+  const searchRef1 = useRef()
+  const searchRef2 = useRef()
 
-  function seeIssue(issue){
-    setShow(true)
-    setIssue(issue)
-  }
-  function closeModal(){
-    setShow(false)
+  useEffect(() => {
+    const getTags = async () => {
+      const data = await getDocs(tagsCollectionRef);
+      setTags(data.docs.map((doc) => ({ ...doc.data(), docId: doc.id })));
+    };
+
+    getTags();
+  },[]);
+
+  useEffect(()=>{
+    setShownIssues(issues)
+  }, [issues])
+
+  function handleSearch(e, number){
+    e.preventDefault()
+    setShownIssues([])
+    if(number === 1)
+    {
+      //more than 1 tags
+      if(searchRef1.current.value.includes(',')){
+        issues.filter(i=>{
+          searchRef1.current.value.split(",").map(searchTag=>{
+            
+            if(i.tags.includes(searchTag) && searchTag !== ''){
+              setShownIssues(prev=> [...prev, i])
+            }
+    
+          })
+        })
+      }
+      //only 1 tag 
+    else{
+      issues.filter(i=>{
+        if(i.tags.includes(searchRef1.current.value))
+        {
+          setShownIssues(prev=> [...prev, i])
+        }
+      })
+    }
+    searchRef1.current.value = ''
+    }
+    else{
+      if(searchRef2.current.value.includes(',')){
+        issues.filter(i=>{
+          searchRef2.current.value.split(",").map(searchTag=>{
+            
+            if(i.tags.includes(searchTag) && searchTag !== ''){
+              setShownIssues(prev=> [...prev, i])
+            }
+    
+          })
+        })
+      }
+      //only 1 tag 
+    else{
+      issues.filter(i=>{
+        if(i.tags.includes(searchRef2.current.value))
+        {
+          setShownIssues(prev=> [...prev, i])
+        }
+      })
+    }
+    searchRef2.current.value = ''
+    }
+    
   }
 
-  const createConversation = async(cid, cname, cphoto)=>{
-    await addDoc(convsCollectionRef, { userId: id,username: username,userPhoto: photo,
-    contactId:cid,contactName: cname, contactPhoto: cphoto, messages: []});
-    alert('Conversation added successfully!')
+  function addTag(tag, state){
+    if(state === "open")
+      searchRef1.current.value = `${searchRef1.current.value},${tag.tag}`
+    else
+      searchRef2.current.value = `${searchRef2.current.value},${tag.tag}`
+  }
+
+  function showAll(){
+    setShownIssues(issues)
   }
 
   return (
@@ -48,10 +112,10 @@ export default function Dashboard() {
          src={photo}/></Nav.Link>
       </Nav.Item>
       <Nav.Item className='text-center w-100'>
-        <Nav.Link eventKey='open'>Open Issues</Nav.Link>
+        <Nav.Link eventKey='open' onClick={showAll}>Open Issues</Nav.Link>
       </Nav.Item>
       <Nav.Item className='text-center w-100'>
-        <Nav.Link eventKey='closed'>Closed Issues</Nav.Link>
+        <Nav.Link eventKey='closed' onClick={showAll}>Closed Issues</Nav.Link>
       </Nav.Item>
       </Nav>
 
@@ -60,51 +124,63 @@ export default function Dashboard() {
       </Nav.Item>
       </Nav>
 
-      <Tab.Content className='p-3' style={{width:"80%"}}>
+      <Tab.Content className='p-3 overflow-auto' style={{width:"80%", height:"100vh"}}>
         <Tab.Pane className='overflow-auto' style={{height:"90vh"}} eventKey="open">
-          { issues !== '' &&
-            issues.map(i=>{
-              return <><Card>
-              <Card.Header>Issue title: {i.title},
-              Contributers: <img style={{width:"40px", height:"40px", borderRadius:"50%"}} src={i.userPhoto}/></Card.Header>
-              <Card.Body>{i.desc.substring(0,30)} <Button className='p-0' style={{color:"lightblue"}} variant='link' onClick={()=>seeIssue(i)}>...read more</Button></Card.Body>
-            </Card><br/></>
-            })
-          }
+          {/* search bar */}
+          <Form onSubmit={(e)=>handleSearch(e,1)} className='mb-4 d-flex'>
+            <InputGroup style={{marginRight:"10px"}}>
+            <Form.Control ref={searchRef1} style={{background:"white"}}></Form.Control>
+            <Button type="submit" variant='dark'>Search issue by tags</Button>
+            </InputGroup>
+            <Dropdown>
+            <Dropdown.Toggle variant="light" id="dropdown-basic">
+              Select Tags
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu style={{height:"180px", overflow:"auto"}}>
+              {
+                tags !== '' &&
+                tags.map(tag=>{
+                  return <Dropdown.Item>
+                    <p className='p-0 m-0' onClick={()=> addTag(tag,"open")}>{tag.tag}</p>
+                  </Dropdown.Item>
+                })
+              }
+            </Dropdown.Menu>
+          </Dropdown>
+          </Form>
+           <ViewIssues issues={shownIssues} state="open"/>
         </Tab.Pane>
         <Tab.Pane eventKey="closed">
-          sdddsd
+        <Form onSubmit={(e)=>handleSearch(e,2)} className='mb-4 d-flex'>
+            <InputGroup style={{marginRight:"10px"}}>
+            <Form.Control ref={searchRef2} style={{background:"white"}}></Form.Control>
+            <Button type="submit" variant='dark'>Search issue by tags</Button>
+            </InputGroup>
+            <Dropdown>
+            <Dropdown.Toggle variant="light" id="dropdown-basic">
+              Select Tags
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu style={{height:"180px", overflow:"auto"}}>
+              {
+                tags !== '' &&
+                tags.map(tag=>{
+                  return <Dropdown.Item>
+                    <p className='p-0 m-0' onClick={()=> addTag(tag, "closed")}>{tag.tag}</p>
+                  </Dropdown.Item>
+                })
+              }
+            </Dropdown.Menu>
+          </Dropdown>
+          </Form>
+         <ViewIssues issues={shownIssues} state="closed"/>
         </Tab.Pane>
         <Tab.Pane eventKey="profile">
           <Profile/>
         </Tab.Pane>
       </Tab.Content>
       </div>
-      <Modal show={show} onHide={closeModal}>
-      <Modal.Header closeButton><span style={{fontWeight:"bold"}}>Issue: </span>{issue !== null && issue.title}</Modal.Header>
-      <Modal.Body className='d-flex flex-column'>
-      <span style={{fontWeight:"bold"}}>Raised by:</span> 
-      <p>{issue !== null && issue.username}</p>
-      <span style={{fontWeight:"bold"}}>Description:</span>
-      <p>{issue !== null && issue.desc}</p>
-      {/* {
-        issue !== null && issue.donate !== '' && <Button>Donate</Button>
-      } */}
-      <span style={{fontWeight:"bold"}}>Contributors:</span>
-      <div>
-      <img style={{width:"40px", height:"40px", borderRadius:"50%"}} src={issue !== null && issue.userPhoto}/>
-      </div>
-      <span style={{fontWeight:"bold"}}>Associated Tags:</span>
-      <div className='flex mb-4'>
-      {
-        issue !== null && issue.tags.split(',').map(tag=>{
-          return <Badge pill bg='secondary'>{tag}</Badge>
-        })
-      }
-      </div>
-      <Button onClick={()=>createConversation(issue.userId, issue.username, issue.userPhoto)}>Start conversation with {issue !== null && issue.username}</Button>
-      </Modal.Body>
-      </Modal>
     </Tab.Container>
   )
 }

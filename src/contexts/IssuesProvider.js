@@ -22,7 +22,7 @@ useEffect(() => {
     };
 
     getIssues();
-  }, []);
+  },[]);
   
 return (
     <IssueContext.Provider value={issues}>

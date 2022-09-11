@@ -27,6 +27,7 @@ a.nav-link:hover{
 
 ::-webkit-scrollbar{
   width:10px;
+  background-color: white;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -45,4 +46,9 @@ background-color: lightblue;
 button.border.rounded-0.btn.btn-light{
   background-color: lightblue;
   color: white;
+}
+
+div.card-header{
+  background-color: white;
+  color:lightblue;
 }

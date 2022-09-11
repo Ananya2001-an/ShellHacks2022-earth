@@ -30,9 +30,11 @@ useEffect(()=>{
     })
     return () => {unsubscribe(); }
 }, [])
-  
+
+const value={username, photo, id}
+
 return (
-    <UserContext.Provider value={{username, photo, id}}>
+    <UserContext.Provider value={value}>
         {children}
     </UserContext.Provider>
   )

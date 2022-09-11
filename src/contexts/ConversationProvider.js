@@ -24,7 +24,7 @@ useEffect(() => {
     };
 
     getConvs();
-  });
+  }, []);
   
   const value={
     convs,

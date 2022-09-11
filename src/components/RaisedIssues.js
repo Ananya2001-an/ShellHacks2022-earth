@@ -24,8 +24,8 @@ export default function RaisedIssues() {
             {
               return <>
               <Badge pill bg= {i.isOpen ? "success": "danger"} >{i.isOpen ? "Open": "Closed"}</Badge>
-              <div style={{display:"grid",gridTemplateColumns:"auto 200px"}}>
-              <h4>{index + 1}. {i.title}</h4>
+              <div style={{display:"grid",gridTemplateColumns:"auto 150px"}}>
+              <h5>{index + 1}. {i.title}</h5>
               <Button onClick={()=>updateIssue(i)} variant= {i.isOpen ? "danger": "success"}>{i.isOpen ? "Close this issue": "Open issue again"}</Button>
               </div>
               <hr></hr>
