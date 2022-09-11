@@ -69,7 +69,7 @@ export default function ViewIssues({issues, state}) {
       }
       </div>
       <span style={{fontWeight:"bold"}}>Help Us:</span>
-      <p>{issue.prompt}</p>
+      <p>{issue !== null && issue.prompt}</p>
       <Button variant='dark' onClick={()=>createConversation(issue.userId, issue.username, issue.userPhoto, issue.docId)}>Start conversation with {issue !== null && issue.username}</Button>
       </Modal.Body>
       </Modal>
