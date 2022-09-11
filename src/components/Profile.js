@@ -6,7 +6,6 @@ import RaisedIssues from './RaisedIssues'
 import Chats from './Chats'
 
 export default function Profile() {
-  const {username} = useUser()
   return (
     <Container className='flex-column p-3' style={{background:"white",height:"95vh", 
     borderRadius:"1rem", color:"lightblue", overflow:"auto"}}>
@@ -25,13 +24,7 @@ export default function Profile() {
             <Nav.Link eventKey="second">Issues you raised</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="third">Issues you supported</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="fourth">Create New Issue</Nav.Link>
-          </Nav.Item>
-          <Nav.Item> 
-            <Nav.Link eventKey="fifth">Edit your profile</Nav.Link>
+            <Nav.Link eventKey="third">Create New Issue</Nav.Link>
           </Nav.Item>
         </Nav>
       </Col>
@@ -43,15 +36,9 @@ export default function Profile() {
           <Tab.Pane eventKey="second">
             <RaisedIssues/>
           </Tab.Pane>
-          <Tab.Pane eventKey="third">
-            fdfd
-          </Tab.Pane>
           <Tab.Pane className='overflow-auto' style={{height:"80vh", display:"flex",
-          justifyContent:"center"}} eventKey="fourth">
+          justifyContent:"center"}} eventKey="third">
             <IssueForm/>
-          </Tab.Pane>
-          <Tab.Pane eventKey="fifth">
-            jhjk
           </Tab.Pane>
         </Tab.Content>
       </Col>

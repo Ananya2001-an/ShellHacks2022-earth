@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Accordion, Button, Badge } from 'react-bootstrap'
+import { Form, Button, Badge } from 'react-bootstrap'
 import { db } from '../firebase';
 import {
   collection,
@@ -16,7 +16,6 @@ export default function IssueForm() {
     const [desc, setDesc] = useState('')
     const [tags, setTags] = useState('')
     const [fetchTags, setFetchTags] = useState('')
-    const [donate, setDonate] = useState('')
     const [prompt, setPrompt] = useState('')
     let badgeColors = ['primary', 'secondary','warning','danger','success', 'info', 'dark']
 
@@ -24,7 +23,7 @@ export default function IssueForm() {
         e.preventDefault();
 
         await addDoc(issuesCollectionRef, { userId: id,username: username,userPhoto: photo,
-             title: title, desc: desc, tags: tags, donate: donate, prompt: prompt,
+             title: title, desc: desc, tags: tags, prompt: prompt,involved: [photo],
               isOpen: true});
         let tagArray = tags.split(',')
         tagArray.map(async tag=>{
@@ -80,29 +79,13 @@ export default function IssueForm() {
             }
             </div>
         </div>
-        <Form.Group className='mb-2'>
-            <Form.Label style={{fontWeight:"bold"}}>4. How someone can help you remotely? (optional)</Form.Label>
-            <Accordion>
-            <Accordion.Item eventKey="0">
-                <Accordion.Header>By donating funds</Accordion.Header>
-                <Accordion.Body>
+        <Form.Group className='mb-4'>
+            <Form.Label style={{fontWeight:"bold"}}>4. How someone can help you remotely?</Form.Label>
+           
+            <Form.Control required onChange={(event) => {
+            setPrompt(event.target.value);
+            }} placeholder='for e.g; we need someone to build us a software that...'></Form.Control>
 
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-                <Accordion.Header>By providing engineering solutions</Accordion.Header>
-                <Accordion.Body>
-                    <Form.Group>
-                        <Form.Label>
-                            Add Problem Prompt
-                        </Form.Label>
-                        <Form.Control onChange={(event) => {
-                        setPrompt(event.target.value);
-                        }} placeholder='for e.g; we need someone to build us a software that...'></Form.Control>
-                    </Form.Group>
-                </Accordion.Body>
-            </Accordion.Item>
-            </Accordion>
         </Form.Group>
         <Button variant='light' style={{color:"white"}} type="submit">Create</Button>
     </Form>
