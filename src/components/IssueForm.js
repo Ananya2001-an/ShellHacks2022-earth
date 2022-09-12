@@ -23,11 +23,12 @@ export default function IssueForm() {
         e.preventDefault();
 
         await addDoc(issuesCollectionRef, { userId: id,username: username,userPhoto: photo,
-             title: title, desc: desc, tags: tags, prompt: prompt,
+             title: title, desc: desc, tags: tags, prompt: prompt,involved: [photo],
               isOpen: true});
         let tagArray = tags.split(',')
         tagArray.map(async tag=>{
-            await addDoc(tagsCollectionRef, {tag: tag})
+            if(tag !== '')
+                await addDoc(tagsCollectionRef, {tag: tag})
         })
         alert('Issue added successfully!')
     }
@@ -71,10 +72,11 @@ export default function IssueForm() {
             {
                 fetchTags !== "" &&
                 fetchTags.map(tag=>{
-                    return <Badge bg={badgeColors[Math.floor(Math.random()*badgeColors.length)]}
-                    className='px-2 mx-1'>
+                    if(tag.tag !== '')
+                        return <Badge bg={badgeColors[Math.floor(Math.random()*badgeColors.length)]}
+                        className='px-2 mx-1'>
                         <a onClick={()=>addTag(tag)} style={{cursor:"pointer"}}>{tag.tag}</a>
-                    </Badge>
+                        </Badge>
                 })
             }
             </div>

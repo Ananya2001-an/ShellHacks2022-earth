@@ -4,7 +4,6 @@ import {
     collection,
     getDocs
   } from "firebase/firestore";
-import { useUser } from './UserProvider';
 
 const ConvContext = React.createContext()
 

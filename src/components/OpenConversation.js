@@ -74,22 +74,22 @@ export default function OpenConversation() {
 
     return (
       <div style={{display:"flex", flexDirection:"column", height:"70vh", border:"1px solid lightblue"}}>
-      <div style={{flexGrow:1, overflow:"auto"}}>
+      <div style={{flexGrow:1, overflow:"auto", background:"lightblue"}}>
         <div className='d-flex flex-column align-items-start justify-content-end px-3'>
         {//messages
           selectedConversation != undefined && selectedConversation.userId === id
           && (
-            selectedConversation.messages.map((msg, index)=> {
+            selectedConversation.messages.map((msg)=> {
               // const lastmessage = selectedConversation.messages.length - 1 === index
               
               return <div className={`my-1 d-flex flex-column
                 ${msg.fromId === id ? 'align-self-end align-items-end': 'align-items-start'}`}>
                   <div className = {`rounded px-2 py-1`}
-                  style={msg.fromId === id ? {background:"lightblue", color:"white"} :
+                  style={msg.fromId !== id ? {background:"lightblue", color:"white", border:"1px solid white"} :
                   {background:"white", color:"lightblue", border:"1px solid lightblue"}}>
                   {msg.msg}</div>
                   
-                  <div className={`small`} style={{color:"lightblue"}}>
+                  <div className={`small`} style={{color:"white"}}>
                   {msg.fromId === id ? 'You': `${msg.fromName}`}
                   </div>
               </div>
@@ -104,7 +104,7 @@ export default function OpenConversation() {
           <InputGroup>
           <Form.Control ref={messageRef} style={{background:"none", borderBottom:"0", borderLeft:"0", borderRight:"0"}}
           className='rounded-0'></Form.Control>
-          <Button type="submit" variant='light' className='border rounded-0'>Send</Button>
+          <Button type="submit" variant='dark' className='rounded-0'>Send</Button>
           </InputGroup>
       </Form>
       </div>

@@ -125,8 +125,8 @@ export default function Dashboard() {
       </Nav>
 
       <Tab.Content className='p-3 overflow-auto' style={{width:"80%", height:"100vh"}}>
-        <Tab.Pane className='overflow-auto' style={{height:"90vh"}} eventKey="open">
-          {/* search bar */}
+        <Tab.Pane className='overflow-auto' style={{height:"90vh", padding:"10px"}} eventKey="open">
+
           <Form onSubmit={(e)=>handleSearch(e,1)} className='mb-4 d-flex'>
             <InputGroup style={{marginRight:"10px"}}>
             <Form.Control ref={searchRef1} style={{background:"white"}}></Form.Control>
@@ -151,14 +151,14 @@ export default function Dashboard() {
           </Form>
            <ViewIssues issues={shownIssues} state="open"/>
         </Tab.Pane>
-        <Tab.Pane eventKey="closed">
+        <Tab.Pane className='overflow-auto' style={{height:"90vh", padding:"10px"}} eventKey="closed">
         <Form onSubmit={(e)=>handleSearch(e,2)} className='mb-4 d-flex'>
             <InputGroup style={{marginRight:"10px"}}>
             <Form.Control ref={searchRef2} style={{background:"white"}}></Form.Control>
             <Button type="submit" variant='dark'>Search issue by tags</Button>
             </InputGroup>
             <Dropdown>
-            <Dropdown.Toggle variant="light" id="dropdown-basic">
+            <Dropdown.Toggle variant="light">
               Select Tags
             </Dropdown.Toggle>
 
@@ -166,9 +166,12 @@ export default function Dashboard() {
               {
                 tags !== '' &&
                 tags.map(tag=>{
-                  return <Dropdown.Item>
+                  if(tag.tag !== '')
+                  {
+                    return <Dropdown.Item>
                     <p className='p-0 m-0' onClick={()=> addTag(tag, "closed")}>{tag.tag}</p>
-                  </Dropdown.Item>
+                    </Dropdown.Item>
+                  }
                 })
               }
             </Dropdown.Menu>
