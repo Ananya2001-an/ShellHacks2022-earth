@@ -1,14 +1,13 @@
 import React from 'react'
 import { Container, Row, Col, Tab,Nav } from 'react-bootstrap'
-import {useUser} from '../contexts/UserProvider'
 import IssueForm from './IssueForm'
 import RaisedIssues from './RaisedIssues'
 import Chats from './Chats'
 
 export default function Profile() {
   return (
-    <Container className='flex-column p-3' style={{background:"white",height:"95vh", 
-    borderRadius:"1rem", color:"lightblue", overflow:"auto"}}>
+    <Container className='flex-column p-3' style={{background:"black",height:"95vh", 
+    borderRadius:"1rem", color:"rgb(0, 211, 0)", overflow:"auto"}}>
     <h1 style={{fontFamily:"Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"}}>
       Your Profile
     </h1>

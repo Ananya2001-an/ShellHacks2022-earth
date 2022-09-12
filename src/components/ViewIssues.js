@@ -11,7 +11,6 @@ import {
 import { useConv } from '../contexts/ConversationProvider';
 
 export default function ViewIssues({issues, state}) {
-    let badgeColors = ['primary','secondary','warning','danger','success', 'info', 'dark']
     const [issue, setIssue] = useState(null)
     const [show, setShow] = useState(false)
     const convsCollectionRef = collection(db, "convs");
@@ -50,35 +49,45 @@ export default function ViewIssues({issues, state}) {
     if(i.isOpen === true && state === "open" || i.isOpen === false && state === "closed")
     {return <>
     <Card>
-    <Card.Header><span style={{fontWeight:"bold"}}>Issue title:</span> {i.title},
-    <span style={{fontWeight:"bold"}}>  Tags:  </span>
+    <Card.Header style={{color:"white"}}><span style={{fontWeight:"bold", color:"rgb(0, 211, 0)"}}>Issue title:</span> {i.title},
+    <span style={{fontWeight:"bold",color:"rgb(0, 211, 0)"}}>  Tags:  </span>
     {
       i.tags.split(',').map(tag=>{
-        return <Badge className='mx-1' pill 
-        bg={badgeColors[Math.floor(Math.random()*badgeColors.length)]}>{tag}</Badge>
+        return <Badge pill bg='dark' style={{marginRight:'5px'}}>{tag}</Badge>
       })
     }
+    <span style={{fontWeight:"bold",color:"rgb(0, 211, 0)"}}>  Raised By:  </span>
+    {
+      <img style={{width:"40px", height:"40px", borderRadius:"50%", border:"2px solid rgb(0, 211, 0)"}} src={issue !== null && issue.userPhoto}/>
+    }
     </Card.Header>
-    <Card.Body>{i.desc.substring(0,120)} <Button className='p-0' style={{color:"lightblue"}} variant='link' onClick={()=>seeIssue(i)}>...read more</Button></Card.Body>
+    <Card.Body style={{color:"white"}}>{i.desc.substring(0,120)} <Button className='p-0'
+    style={{color:"rgb(0, 211, 0)"}} variant='link' onClick={()=>seeIssue(i)}>
+    ...read more</Button>
+    </Card.Body>
     </Card><br/>
-    <Modal show={show} onHide={closeModal} className='modal-lg'>
-      <Modal.Header closeButton><span style={{fontWeight:"bold"}}>Issue: </span>{issue !== null && issue.title}</Modal.Header>
+    
+    <Modal show={show} onHide={closeModal} className='modal-lg' style={{color:'rgb(0, 211, 0)'}}>
+      <Modal.Header style={{color:"white"}} closeButton><span 
+      style={{fontWeight:"bold", color:"rgb(0, 211, 0)",marginRight:"5px"}}>
+      Issue:</span>{issue !== null && issue.title}</Modal.Header>
+      
       <Modal.Body className='d-flex flex-column'>
       <span style={{fontWeight:"bold"}}>Raised by:</span> 
       {
         issue !== null && issue.userId !== id &&
-        <p>{issue !== null && issue.username}</p> ||
+        <p style={{color:"white"}}>{issue !== null && issue.username}</p> ||
         issue !== null && issue.userId === id &&
-        <p>You</p>
+        <p style={{color:"white"}}>You</p>
       }
       <span style={{fontWeight:"bold"}}>Description:</span>
-      <p>{issue !== null && issue.desc}</p>
+      <p style={{color:"white"}}>{issue !== null && issue.desc}</p>
       <span style={{fontWeight:"bold"}}>People interested in this issue:</span>
-      <div>
+      <div className='mb-4'>
       {
         issue !== null && issue.involved !== undefined && 
         issue.involved.map(p=>{
-          return <img style={{width:"40px", height:"40px", borderRadius:"50%"}} src={p}/>
+          return <img style={{width:"40px", height:"40px", borderRadius:"50%", border:"2px solid rgb(0, 211, 0)", margin:"2px"}} src={p}/>
         })
         
       }
@@ -87,24 +96,24 @@ export default function ViewIssues({issues, state}) {
       <div className='flex mb-4'>
       {
         issue !== null && issue.tags.split(',').map(tag=>{
-          return <Badge className='mx-1' pill bg={badgeColors[Math.floor(Math.random()*badgeColors.length)]}>{tag}</Badge>
+          return <Badge pill bg='dark' style={{marginRight:"5px"}}>{tag}</Badge>
         })
       }
       </div>
-      <span style={{fontWeight:"bold"}}>Help Us:</span>
-      <p>{issue !== null && issue.prompt}</p>
+      <span style={{fontWeight:"bold"}}>How can you help?</span>
+      <p style={{color:"white"}}>{issue !== null && issue.prompt}</p>
       {
         issue !== null && issue.userId !== id && state === "open" && !convs.some(c => c.issueId === issue.docId) &&
-        <Button variant='dark' onClick={()=>createConversation(issue.userId, issue.username,
+        <Button variant='dark' style={{color:"rgb(0, 211, 0)"}} onClick={()=>createConversation(issue.userId, issue.username,
           issue.userPhoto, issue.docId, issue.title)}>Start conversation with {issue !== null && issue.username}</Button>
       }
       {
         issue !== null && issue.userId === id && state === "open" &&
-        <Badge style={{fontSize:"15px"}} pill bg='secondary'>Conversation cannot be created with yourself</Badge>
+        <Badge style={{fontSize:"15px", color:"rgb(0, 211, 0)"}} pill bg='dark'>Conversation cannot be created with yourself</Badge>
       }
       {
         issue !== null && issue.userId !== id && state === "open" && convs.some(c => c.issueId === issue.docId) &&
-        <Badge style={{fontSize:"15px"}} pill bg='secondary'>Conversation is already created w.r.t this issue</Badge>
+        <Badge style={{fontSize:"15px", color:"rgb(0, 211, 0)"}} pill bg='dark'>Conversation is already created w.r.t this issue</Badge>
       }
       </Modal.Body>
       </Modal>

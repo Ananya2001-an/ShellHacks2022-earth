@@ -17,7 +17,6 @@ export default function IssueForm() {
     const [tags, setTags] = useState('')
     const [fetchTags, setFetchTags] = useState('')
     const [prompt, setPrompt] = useState('')
-    let badgeColors = ['primary', 'secondary','warning','danger','success', 'info', 'dark']
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -52,28 +51,28 @@ export default function IssueForm() {
         <Form.Group className='mb-2'>
             <Form.Label style={{fontWeight:"bold"}}>1. Title</Form.Label>
             <Form.Control required onChange={(event) => {
-            setTitle(event.target.value)}} type='text'></Form.Control>
+            setTitle(event.target.value)}} type='text' style={{color:"rgb(0, 211, 0)",background:"none", border:"1px solid rgb(0, 211, 0)"}}></Form.Control>
         </Form.Group>
         <Form.Group className='mb-2'>
             <Form.Label style={{fontWeight:"bold"}}>2. Description</Form.Label>
             <Form.Control required onChange={(event) => {
             setDesc(event.target.value);
-            }} type='text'></Form.Control>
+            }} type='text' style={{background:"none", border:"1px solid rgb(0, 211, 0)",color:"rgb(0, 211, 0)"}}></Form.Control>
         </Form.Group>
         <Form.Group className='mb-2'>
             <Form.Label style={{fontWeight:"bold"}}>3. Add tags (separated by commas)</Form.Label>
             <Form.Control required value={tags} onChange={(event) => {
             setTags(event.target.value);
-            }} type='text' placeholder='for e.g; ocean, sharkfinhunting, ...'></Form.Control>
+            }} type='text' placeholder='for e.g; ocean, sharkfinhunting, ...' style={{color:"rgb(0, 211, 0)",background:"none", border:"1px solid rgb(0, 211, 0)"}}></Form.Control>
         </Form.Group>
         <div className='mb-2'>
             Or you can choose from here: (click to add)
-            <div style={{overflow:'auto', height:"70px",padding:"10px", border:"1px solid lightblue"}}>
+            <div style={{overflow:'auto', height:"70px",padding:"10px", border:"1px solid rgb(0, 211, 0)"}}>
             {
                 fetchTags !== "" &&
                 fetchTags.map(tag=>{
                     if(tag.tag !== '')
-                        return <Badge bg={badgeColors[Math.floor(Math.random()*badgeColors.length)]}
+                        return <Badge bg='dark'
                         className='px-2 mx-1'>
                         <a onClick={()=>addTag(tag)} style={{cursor:"pointer"}}>{tag.tag}</a>
                         </Badge>
@@ -86,10 +85,10 @@ export default function IssueForm() {
            
             <Form.Control required onChange={(event) => {
             setPrompt(event.target.value);
-            }} placeholder='for e.g; we need someone to build us a software that...'></Form.Control>
+            }} placeholder='for e.g; we need someone to build us a software that...' style={{color:"rgb(0, 211, 0)",background:"none", border:"1px solid rgb(0, 211, 0)"}}></Form.Control>
 
         </Form.Group>
-        <Button variant='light' style={{color:"white"}} type="submit">Create</Button>
+        <Button variant='dark' style={{color:"rgb(0, 211, 0)"}} type="submit">Create</Button>
     </Form>
   )
 }

@@ -8,7 +8,7 @@ export default function Chats() {
     const {id} = useUser()
     return (
        <Row>
-        <Col sm={5} className='border p-0'>
+        <Col sm={5} className='p-0 overflow-auto' style={{border:"1px solid rgb(0, 211, 0)"}}>
         <ListGroup variant='flush'>
             {
                 convs !== "" &&
@@ -19,9 +19,9 @@ export default function Chats() {
                 active={selectedConversationIndex === index}
                 onClick={()=>{
                     setSelectedConversationIndex(index)
-                }}>
+                }} >
                     <img style={{width:"35px", height:"35px", borderRadius:"50%"}}
-                     src={c.contactPhoto}/> {c.contactName}<br/> Issue: {c.issueName}
+                     src={c.contactPhoto}/> {c.contactName}<br/> <span style={{fontWeight:"bold"}}>#Issue:</span> {c.issueName}
                 </ListGroup.Item>
                 ))
             }

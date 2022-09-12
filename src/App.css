@@ -1,28 +1,24 @@
-.nav-item > button{
-  background-color: lightblue;
-  border: 1px solid lightblue;
-}
-
 .nav-item > button:hover{
   background-color: rgb(161, 200, 213);
 }
 
 a.nav-link{
- color: lightblue;
- border-bottom: 1px solid lightblue;
+ color: rgb(0, 211, 0);
+ border-bottom: 1px solid black;
 }
 
 a.nav-link.active, a.nav-link.active:hover{
-  color: white;
-  background-color: lightblue;
+  color: black;
+  background-color: rgb(0, 211, 0);
 }
 
 a.nav-link:hover{
-  color:lightblue;
+  color:white;
 }
 
 .nav-pills > .nav-item > a.active{
-  background-color: lightblue;
+  background-color: rgb(0, 211, 0);
+  color: black;
 }
 
 ::-webkit-scrollbar{
@@ -30,23 +26,70 @@ a.nav-link:hover{
 }
 
 ::-webkit-scrollbar-thumb{
-  background-color: lightblue;
+  background-color: rgb(0, 211, 0);
+  border: 1px solid black;
+  border-radius: 1.5rem;
 }
 
-form > button.btn.btn-light{
-  background-color: lightblue;
-  color:white;
+
+button.list-group-item{
+  background-color: black;
+  color: rgb(0, 211, 0);
+  border-bottom: 1px solid rgb(0, 211, 0);
+}
+
+button.list-group-item > img{
+  border:2px solid rgb(0, 211, 0);
+}
+
+button.list-group-item:hover > img{
+  border:2px solid white;
+}
+button.list-group-item.active > img{
+  border:2px solid black;
+}
+button.list-group-item:hover{
+  color: white;
+  background: none;
 }
 button.list-group-item.active{
-background-color: lightblue;
-border:0;
+  background: rgb(0, 211, 0);
+  color: black;
+  border:0;
+  
+}
+button.rounded-0.btn.btn-dark{
+  background-color: rgb(0, 211, 0);
+  color: black;
+  border:1px solid rgb(0, 211, 0);
 }
 
-button.border.rounded-0.btn.btn-light{
-  background-color: lightblue;
-  color: white;
+div.card-header, div.card-body{
+  background-color: black;
+  border: 1px solid rgb(0, 211, 0);
 }
 
-div.card-header{
-  background-color: white;
+div.card-header, div.card-body{
+  font-size: 18px;
+}
+
+div.card{
+  border: 0;
+}
+
+.dropdown-item > p:hover{
+color: black;
+background: none;
+}
+
+a.dropdown-item:active, a.dropdown-item:hover{
+  background: rgb(0, 211, 0);
+}
+
+.modal-dialog > .modal-content{
+  background-color: black;
+}
+
+button.btn-close{
+  background-color: rgb(0, 211, 0);
 }

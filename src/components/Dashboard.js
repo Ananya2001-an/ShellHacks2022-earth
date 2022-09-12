@@ -99,16 +99,16 @@ export default function Dashboard() {
     <Tab.Container defaultActiveKey='open'>
       <div className='d-flex'>
       <Nav className='d-flex flex-column px-0' style={{width:"20%",height:"100vh"
-      , background:"white"
+      , background:"black"
       ,padding:"10px",alignItems:"center", justifyContent:"space-between"}}>
       
-      <Nav.Item style={{color:"lightblue",fontFamily:"Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+      <Nav.Item style={{color:"rgb(0, 211, 0)",fontFamily:"Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
       fontSize:"27px"}}>Earth</Nav.Item>
       
       <Nav className='flex-column align-items-center w-100'>
       <Nav.Item className='text-center w-100'>
         <Nav.Link eventKey='profile'><img style={{width:"50px",height:"50px"
-        ,border:"3px solid lightblue", borderRadius:"1.5rem"}}
+        ,border:"3px solid rgb(0, 211, 0)", borderRadius:"1.5rem"}}
          src={photo}/></Nav.Link>
       </Nav.Item>
       <Nav.Item className='text-center w-100'>
@@ -120,7 +120,7 @@ export default function Dashboard() {
       </Nav>
 
       <Nav.Item>
-      <Button variant='light' style={{color:"white"}} onClick={SignOut}>Sign Out</Button>
+      <Button variant='dark' style={{color:"rgb(0, 211, 0)"}} onClick={SignOut}>Sign Out</Button>
       </Nav.Item>
       </Nav>
 
@@ -129,19 +129,19 @@ export default function Dashboard() {
 
           <Form onSubmit={(e)=>handleSearch(e,1)} className='mb-4 d-flex'>
             <InputGroup style={{marginRight:"10px"}}>
-            <Form.Control ref={searchRef1} style={{background:"white"}}></Form.Control>
-            <Button type="submit" variant='dark'>Search issue by tags</Button>
+            <Form.Control ref={searchRef1} style={{background:"none", border:"2px solid black"}}></Form.Control>
+            <Button type="submit" variant='dark' style={{color:"rgb(0, 211, 0)"}}>Search issue by tags</Button>
             </InputGroup>
             <Dropdown>
-            <Dropdown.Toggle variant="light" id="dropdown-basic">
+            <Dropdown.Toggle variant="dark" style={{color:"rgb(0, 211, 0)",border:"2px solid black"}}>
               Select Tags
             </Dropdown.Toggle>
 
-            <Dropdown.Menu style={{height:"180px", overflow:"auto"}}>
+            <Dropdown.Menu style={{height:"180px", overflow:"auto", background:"black"}}>
               {
                 tags !== '' &&
                 tags.map(tag=>{
-                  return <Dropdown.Item>
+                  return <Dropdown.Item style={{color:"rgb(0, 211, 0)"}}>
                     <p className='p-0 m-0' onClick={()=> addTag(tag,"open")}>{tag.tag}</p>
                   </Dropdown.Item>
                 })
@@ -154,21 +154,21 @@ export default function Dashboard() {
         <Tab.Pane className='overflow-auto' style={{height:"90vh", padding:"10px"}} eventKey="closed">
         <Form onSubmit={(e)=>handleSearch(e,2)} className='mb-4 d-flex'>
             <InputGroup style={{marginRight:"10px"}}>
-            <Form.Control ref={searchRef2} style={{background:"white"}}></Form.Control>
-            <Button type="submit" variant='dark'>Search issue by tags</Button>
+            <Form.Control ref={searchRef2} style={{background:"none", border:"2px solid black"}}></Form.Control>
+            <Button type="submit" variant='dark' style={{color:"rgb(0, 211, 0)"}}>Search issue by tags</Button>
             </InputGroup>
             <Dropdown>
-            <Dropdown.Toggle variant="light">
+            <Dropdown.Toggle variant="dark" style={{color:"rgb(0, 211, 0)",border:"2px solid black"}}>
               Select Tags
             </Dropdown.Toggle>
 
-            <Dropdown.Menu style={{height:"180px", overflow:"auto"}}>
+            <Dropdown.Menu style={{height:"180px", overflow:"auto", background:"black"}}>
               {
                 tags !== '' &&
                 tags.map(tag=>{
                   if(tag.tag !== '')
                   {
-                    return <Dropdown.Item>
+                    return <Dropdown.Item style={{color:"rgb(0, 211, 0)"}}>
                     <p className='p-0 m-0' onClick={()=> addTag(tag, "closed")}>{tag.tag}</p>
                     </Dropdown.Item>
                   }
