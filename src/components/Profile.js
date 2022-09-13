@@ -35,8 +35,7 @@ export default function Profile() {
           <Tab.Pane eventKey="second">
             <RaisedIssues/>
           </Tab.Pane>
-          <Tab.Pane className='overflow-auto' style={{height:"80vh", display:"flex",
-          justifyContent:"center"}} eventKey="third">
+          <Tab.Pane className='overflow-auto' style={{height:"80vh"}} eventKey="third">
             <IssueForm/>
           </Tab.Pane>
         </Tab.Content>

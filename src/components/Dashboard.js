@@ -7,6 +7,7 @@ import ViewIssues from './ViewIssues';
 import { useEffect, useState, useRef } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
+import DonationForm from './DonationForm';
 
 export default function Dashboard() {
   const {photo} = useUser()
@@ -117,6 +118,9 @@ export default function Dashboard() {
       <Nav.Item className='text-center w-100'>
         <Nav.Link eventKey='closed' onClick={showAll}>Closed Issues</Nav.Link>
       </Nav.Item>
+      <Nav.Item className='text-center w-100'>
+        <Nav.Link eventKey='donate' onClick={showAll}>Make a donation</Nav.Link>
+      </Nav.Item>
       </Nav>
 
       <Nav.Item>
@@ -181,6 +185,9 @@ export default function Dashboard() {
         </Tab.Pane>
         <Tab.Pane eventKey="profile">
           <Profile/>
+        </Tab.Pane>
+        <Tab.Pane eventKey="donate">
+          <DonationForm/>
         </Tab.Pane>
       </Tab.Content>
       </div>

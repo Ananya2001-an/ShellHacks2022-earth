@@ -53,7 +53,7 @@ export default function ViewIssues({issues, state}) {
     <span style={{fontWeight:"bold",color:"rgb(0, 211, 0)"}}>  Tags:  </span>
     {
       i.tags.split(',').map(tag=>{
-        return <Badge pill bg='dark' style={{marginRight:'5px'}}>{tag}</Badge>
+        return <Badge pill bg='secondary' style={{marginRight:'5px'}}>{tag}</Badge>
       })
     }
     <span style={{fontWeight:"bold",color:"rgb(0, 211, 0)"}}>  Raised By:  </span>
@@ -65,7 +65,8 @@ export default function ViewIssues({issues, state}) {
     style={{color:"rgb(0, 211, 0)"}} variant='link' onClick={()=>seeIssue(i)}>
     ...read more</Button>
     </Card.Body>
-    </Card><br/>
+    </Card>
+    <br/>
     
     <Modal show={show} onHide={closeModal} className='modal-lg' style={{color:'rgb(0, 211, 0)'}}>
       <Modal.Header style={{color:"white"}} closeButton><span 
@@ -96,7 +97,7 @@ export default function ViewIssues({issues, state}) {
       <div className='flex mb-4'>
       {
         issue !== null && issue.tags.split(',').map(tag=>{
-          return <Badge pill bg='dark' style={{marginRight:"5px"}}>{tag}</Badge>
+          return <Badge pill bg='secondary' style={{marginRight:"5px"}}>{tag}</Badge>
         })
       }
       </div>
@@ -104,16 +105,16 @@ export default function ViewIssues({issues, state}) {
       <p style={{color:"white"}}>{issue !== null && issue.prompt}</p>
       {
         issue !== null && issue.userId !== id && state === "open" && !convs.some(c => c.issueId === issue.docId) &&
-        <Button variant='dark' style={{color:"rgb(0, 211, 0)"}} onClick={()=>createConversation(issue.userId, issue.username,
+        <Button variant='secondary' style={{color:"white"}} onClick={()=>createConversation(issue.userId, issue.username,
           issue.userPhoto, issue.docId, issue.title)}>Start conversation with {issue !== null && issue.username}</Button>
       }
       {
         issue !== null && issue.userId === id && state === "open" &&
-        <Badge style={{fontSize:"15px", color:"rgb(0, 211, 0)"}} pill bg='dark'>Conversation cannot be created with yourself</Badge>
+        <Badge style={{fontSize:"15px", color:"white"}} pill bg='secondary'>Conversation cannot be created with yourself</Badge>
       }
       {
         issue !== null && issue.userId !== id && state === "open" && convs.some(c => c.issueId === issue.docId) &&
-        <Badge style={{fontSize:"15px", color:"rgb(0, 211, 0)"}} pill bg='dark'>Conversation is already created w.r.t this issue</Badge>
+        <Badge style={{fontSize:"15px", color:"white"}} pill bg='secondary'>Conversation is already created w.r.t this issue</Badge>
       }
       </Modal.Body>
       </Modal>

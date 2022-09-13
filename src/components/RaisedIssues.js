@@ -18,14 +18,14 @@ export default function RaisedIssues() {
     <div>
     {
         issues !== '' && 
-        issues.map((i, index)=> 
+        issues.map((i)=> 
         { 
             if(i.userId === id) 
             {
               return <>
               <Badge pill bg= {i.isOpen ? "success": "danger"} >{i.isOpen ? "Open": "Closed"}</Badge>
               <div style={{display:"grid",gridTemplateColumns:"auto 150px"}}>
-              <h5>{index + 1}. {i.title}</h5>
+              <h5>{i.title}</h5>
               <Button onClick={()=>updateIssue(i)} variant= {i.isOpen ? "danger": "success"}>{i.isOpen ? "Close this issue": "Open issue again"}</Button>
               </div>
               <hr></hr>

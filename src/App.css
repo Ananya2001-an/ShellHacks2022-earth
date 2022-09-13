@@ -65,16 +65,19 @@ button.rounded-0.btn.btn-dark{
 }
 
 div.card-header, div.card-body{
-  background-color: black;
+  background-color: rgb(36, 36, 36);
   border: 1px solid rgb(0, 211, 0);
 }
 
 div.card-header, div.card-body{
   font-size: 18px;
+  filter: drop-shadow(10px 10px 10px rgb(36, 36, 36));
+  
 }
 
 div.card{
   border: 0;
+  margin-bottom: 20px;
 }
 
 .dropdown-item > p:hover{
@@ -87,7 +90,7 @@ a.dropdown-item:active, a.dropdown-item:hover{
 }
 
 .modal-dialog > .modal-content{
-  background-color: black;
+  background-color: rgb(36, 36, 36);
 }
 
 button.btn-close{

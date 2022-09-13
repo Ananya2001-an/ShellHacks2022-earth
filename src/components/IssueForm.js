@@ -47,7 +47,7 @@ export default function IssueForm() {
       },[]);    
 
   return (
-    <Form onSubmit={handleSubmit} style={{width:"650px"}}>
+    <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-2'>
             <Form.Label style={{fontWeight:"bold"}}>1. Title</Form.Label>
             <Form.Control required onChange={(event) => {
