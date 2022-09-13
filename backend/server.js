@@ -37,8 +37,8 @@ app.post("/create-checkout-session", async (req, res) => {
                 quantity: 1,
             }
         }),
-        success_url: 'http://localhost:3000/dashboard',
-        cancel_url: 'http://localhost:3000/dashboard',
+        success_url: `http://localhost:3000/dashboard/success?courseName=${donate.get(req.body[0].id).courseName}&user=${req.body[0].userId}`,
+        cancel_url: 'http://localhost:3000/dashboard/cancel',
       })
       res.json({ url: session.url })
     } catch (e) {
