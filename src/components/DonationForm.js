@@ -1,22 +1,11 @@
 import { Button, Card, Badge } from 'react-bootstrap'
 import axios from 'axios'
 import { useUser } from '../contexts/UserProvider'
-import { db } from '../firebase';
-import {
-  collection,query,
-  where, onSnapshot
-} from "firebase/firestore";
-import { useEffect, useState } from 'react';
+import { useQuery } from '../contexts/QueryProvider'
 
 export default function DonationForm() {
   const {id} = useUser()
-  const courseCollectionRef = collection(db, "courses");
-  const query1 = query(courseCollectionRef, where('courseName', '==', 'Let\'s explore the sea creatures'))
-  const query2 = query(courseCollectionRef, where('courseName', '==', "Let's explore life in the desert!"))
-  const query3 = query(courseCollectionRef, where('courseName', '==', "The world of ice and who else?"))
-  const [results1, setResults1] = useState([])
-  const [results2, setResults2] = useState([])
-  const [results3, setResults3] = useState([])
+  const {results1, results2, results3} = useQuery()
 
   function handleCheckout(cid)
   {
@@ -29,24 +18,6 @@ export default function DonationForm() {
         console.error(e.error)
       })
   }
-
-  useEffect(()=>{
-    onSnapshot(query1, snap=>{
-      snap.docs.map(doc=>{
-        setResults1(prev=>[...prev, doc._document.data.value.mapValue.fields.userId.stringValue])
-      })
-    })
-    onSnapshot(query2, snap=>{
-      snap.docs.map(doc=>{
-        setResults2(prev=>[...prev, doc._document.data.value.mapValue.fields.userId.stringValue])
-      })
-    })
-    onSnapshot(query3, snap=>{
-      snap.docs.map(doc=>{
-        setResults3(prev=>[...prev, doc._document.data.value.mapValue.fields.userId.stringValue])
-      })
-    })
-  }, [])
 
   return (
     <>
