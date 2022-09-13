@@ -27,7 +27,7 @@ export default function Profile() {
             <Nav.Link eventKey="third">Create New Issue</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="fourth">Your Courses</Nav.Link>
+            <Nav.Link eventKey="fourth">Courses</Nav.Link>
           </Nav.Item>
         </Nav>
       </Col>
