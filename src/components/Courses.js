@@ -10,7 +10,7 @@ export default function Courses() {
     return (
         <Tab.Container defaultActiveKey="first">
         <Row>
-          <Col sm={3}>
+          <Col sm={3} style={{borderRight:"1px solid rgb(0,211,0)", minHeight:"80vh"}}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item> 
                 <Nav.Link eventKey="first">Let's explore the sea creatures</Nav.Link>

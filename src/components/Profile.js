@@ -15,7 +15,7 @@ export default function Profile() {
     
     <Tab.Container defaultActiveKey="first">
     <Row>
-      <Col sm={3}  style={{borderRight:"1px solid rgb(0,211,0)", height:"70vh"}}>
+      <Col sm={3}  style={{borderRight:"1px solid rgb(0,211,0)", height:"80vh"}}>
         <Nav variant="pills" className="flex-column">
           <Nav.Item> 
             <Nav.Link eventKey="first">Your Chats</Nav.Link>
@@ -42,7 +42,7 @@ export default function Profile() {
           <Tab.Pane className='overflow-auto' style={{height:"80vh"}} eventKey="third">
             <IssueForm/>
           </Tab.Pane>
-          <Tab.Pane eventKey="fourth">
+          <Tab.Pane eventKey="fourth" style={{marginLeft:"-20px"}}>
             <Courses/>
           </Tab.Pane>
         </Tab.Content>

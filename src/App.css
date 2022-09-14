@@ -96,3 +96,18 @@ a.dropdown-item:active, a.dropdown-item:hover{
 button.btn-close{
   background-color: rgb(0, 211, 0);
 }
+
+.iframe-container{
+  position: relative;
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+}
+
+iframe{
+position: absolute;
+width: 200px;
+height: 430px;
+top: -250px;
+left: -10px;
+}
