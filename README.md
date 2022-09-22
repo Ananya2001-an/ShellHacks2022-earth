@@ -4,7 +4,7 @@
 
 - allows users to raise issues regarding environmental problems and create chat sessions with others who are interested to help them w.r.t that issue.
 
-- bulit with react. nodejs, firebase, socket.io, stripe and echo3d
+- bulit with react, nodejs, firebase, socket.io, stripe and echo3d.
 
 ![Earth1](https://user-images.githubusercontent.com/55504616/190071896-c503a582-93b4-445d-8ab2-7e5044ced3ad.png)
 
