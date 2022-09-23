@@ -13,7 +13,7 @@ export function SocketProvider({children}) {
     const [socket, setSocket] = useState()
 
     useEffect(()=>{
-        const newSocket = io('https://earth-server.herokuapp.com/', { query: {id} })
+        const newSocket = io('https://earth-server.herokuapp.com', { query: {id} })
         setSocket(newSocket)
 
         return () => newSocket.close()

@@ -9,7 +9,7 @@ app.get('/', (req,res)=>{
 })
 app.use(
   cors({
-    origin: "https://earth-web.netlify.app/",
+    origin: "https://earth-web.netlify.app",
   })
 )
 
@@ -53,7 +53,7 @@ const server = app.listen(process.env.PORT || 5000)
 
 const io = require('socket.io')(server,{
     cors:{
-        origin: 'https://earth-web.netlify.app/'
+        origin: 'https://earth-web.netlify.app'
     }
 })
 
