@@ -10,7 +10,7 @@ export default function DonationForm() {
   function handleCheckout(cid)
   {
     const details = [{id: cid, userId: id}]
-    axios.post("http://localhost:5000/create-checkout-session", details)
+    axios.post("https://earth-server.herokuapp.com/create-checkout-session", details)
       .then(res => {
           window.location.replace(res.data.url)
       })
