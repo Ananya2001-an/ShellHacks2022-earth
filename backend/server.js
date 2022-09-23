@@ -6,7 +6,7 @@ const cors = require("cors")
 app.use(express.json())
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://earth-web.netlify.app/",
   })
 )
 
@@ -37,8 +37,8 @@ app.post("/create-checkout-session", async (req, res) => {
                 quantity: 1,
             }
         }),
-        success_url: `http://localhost:3000/dashboard/success?courseName=${donate.get(req.body[0].id).courseName}&user=${req.body[0].userId}`,
-        cancel_url: 'http://localhost:3000/dashboard/cancel',
+        success_url: `https://earth-web.netlify.app/dashboard/success?courseName=${donate.get(req.body[0].id).courseName}&user=${req.body[0].userId}`,
+        cancel_url: 'https://earth-web.netlify.app/dashboard/cancel',
       })
       res.json({ url: session.url })
     } catch (e) {
@@ -50,7 +50,7 @@ const server = app.listen(5000)
 
 const io = require('socket.io')(server,{
     cors:{
-        origin: 'http://localhost:3000'
+        origin: 'https://earth-web.netlify.app/'
     }
 })
 
