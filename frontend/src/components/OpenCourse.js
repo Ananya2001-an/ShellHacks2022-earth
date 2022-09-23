@@ -8,33 +8,33 @@ export default function OpenCourse({course}) {
       <div>
         <div className='d-flex' style={{justifyContent:"space-between"}}>
           <div className='iframe-container'>
-            <iframe src="https://go.echo3d.co/i3Gk" scrolling='no'>
+            <iframe src="https://go.echo3d.co/o5Vw" scrolling='no'>
             </iframe>
           </div>
           <p style={{height:"500px", width:"700px"}}>
           <h4>Whale Shark</h4>
           The whale shark (Rhincodon typus) is a slow-moving, filter-feeding carpet shark and the largest known extant fish species.
           Studies looking at vertebral growth bands and the growth rates of free-swimming sharks have estimated whale shark lifespans at 80–130 years.
-          <a href='https://go.echo3d.co/i3Gk' target='blank' style={{padding:"5px", color:"white"}}>Full View in AR</a>
+          <a href='https://go.echo3d.co/o5Vw' target='blank' style={{padding:"5px", color:"white"}}>Full View in AR</a>
           </p>
         </div>
         
         <div className='d-flex' style={{justifyContent:"space-between", marginTop:"-200px"}}>
           <div className='iframe-container'>
-            <iframe src="https://go.echo3d.co/V5L2" scrolling='no'>
+            <iframe src="https://go.echo3d.co/BvuK" scrolling='no'>
             </iframe>
           </div>
           <p style={{height:"500px", width:"700px"}}>
           <h4>Clown Fish</h4>
           Clownfish or anemonefish are fishes from the subfamily Amphiprioninae in the family Pomacentridae. 
           Anemonefish are omnivorous and can feed on undigested food from their host anemones, and the fecal matter from the anemonefish provides nutrients to the sea anemone.
-          <a href='https://go.echo3d.co/V5L2' target='blank' style={{padding:"5px", color:"white"}}>Full View in AR</a>
+          <a href='https://go.echo3d.co/BvuK' target='blank' style={{padding:"5px", color:"white"}}>Full View in AR</a>
           </p>
         </div>
 
         <div className='d-flex' style={{justifyContent:"space-between", marginTop:"-200px"}}>
           <div className='iframe-container'>
-            <iframe src="https://go.echo3d.co/hPu4" scrolling='no'>
+            <iframe src="https://go.echo3d.co/zTKL" scrolling='no'>
             </iframe>
           </div>
           <p style={{height:"500px", width:"700px"}}>
@@ -42,7 +42,7 @@ export default function OpenCourse({course}) {
           Manta rays are large rays belonging to the genus Mobula (formerly its own genus Manta). 
           Mantas are found in warm temperate, subtropical and tropical waters.
           They are filter feeders and eat large quantities of zooplankton, which they gather with their open mouths as they swim.
-          <a href='https://go.echo3d.co/hPu4' target='blank' style={{padding:"5px", color:"white"}}>Full View in AR</a>
+          <a href='https://go.echo3d.co/zTKL' target='blank' style={{padding:"5px", color:"white"}}>Full View in AR</a>
           </p>
           </div>
         </div> 
